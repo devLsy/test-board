@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board.testboard.mapper.BoardMapper">
+    <resultMap id="boardMap" type="board.testboard.domain.vo.BoardVO">
+        <id column="board_id" property="boardId"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="name" property="name"/>
+        <result column="reg_date" property="regDate"/>
+        <result column="update_date" property="updateDate"/>
+    </resultMap>
+
+    <!-- board insert -->
+    <insert id="insertBoard" parameterType="board.testboard.domain.vo.BoardVO">
+        INSERT INTO t_board (title, content, name, reg_date, update_date)
+        VALUES (#{title}, #{content}, #{name}, now(), now())
+    </insert>
+
+    <select id="findListWithPaging" parameterType="board.testboard.domain.Criteria" resultMap="boardMap">
+        SELECT * FROM t_board
+        ORDER BY reg_date DESC
+        LIMIT #{pageNum}, #{amount}
+    </select>
+
+    <!-- board update -->
+    <update id="updateBoard" parameterType="map">
+        UPDATE t_board SET
+         title = #{boardVO.title},
+         content = #{boardVO.content},
+         name = #{boardVO.name},
+         update_date = now()
+        WHERE board_id = #{boardId}
+    </update>
+</mapper>
