@@ -6,7 +6,7 @@ import lombok.ToString;
 
 @Getter
 @ToString
-// 페이징 화면 처리를 위한 클래스
+// 페이징 화면 처리를 위한 클래스(화면에 출력할 페이지 수 10개인 경우 해당)
 public class PageMaker {
     private int startPage;  //페이징 화면 하단의 시작 번호(5페이지라고 하면 [1][2][3][4][5] 여기서 제일 첫 번 째 시작번호) 
     private int endPage;    //페이징 화면 하단의 끝 번호(5페이지라고 하면 [1][2][3][4][5] 여기서 제일 끝 번호)

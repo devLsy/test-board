@@ -27,11 +27,11 @@
     </div>
 
     <!-- 게시판 하단의 페이징 버튼 -->
-    <div class="box-footer clearfix">
+    <div class="pull-right">
         <ul class="pagination pagination-sm no-margin pull-right">
 
             <li th:if="${pageMaker.prev} == true">
-                <span> << </span>
+                <span>Previous</span>
             </li>
 
             <li th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}"  th:classappend="${pageMaker.cri.pageNum} == ${idx} ? active : null">
@@ -39,7 +39,7 @@
             </li>
 
             <li th:if="${pageMaker.next} == true and ${pageMaker.endPage > 0}">
-                <span> >> </span>
+                <span>Next</span>
             </li>
         </ul>
     </div>
