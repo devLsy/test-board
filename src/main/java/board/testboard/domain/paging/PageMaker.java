@@ -13,14 +13,15 @@ public class PageMaker {
     private boolean prev, next;     // 이전, 다음 존재 여부
 
     private int totalCount;         // 전체 게시글 수
-    private Criteria criteria;      // 프론트에서 전달하는 pageNum(현재 페이지), amount(출력 페이지) 전달 역할
+    private Criteria cri;      // 프론트에서 전달하는 pageNum(현재 페이지), amount(출력 페이지) 전달 역할
 
     public PageMaker(int totalCount, Criteria cri) {
         this.totalCount = totalCount;
-        this.criteria = cri;
+        this.cri = cri;
 
-        this.endPage = (int)(Math.ceil(cri.getPageNum() / 10.0) * 10);
-        this.startPage = this.endPage - 9;      // amount가 10이니까 시작번호는 10-1
+        this.endPage = (int)(Math.ceil(cri.getPageNum() / (double)10.0) * 10);
+        this.startPage = this.endPage - 9;
+//        this.startPage = (this.endPage - 10) + 1;
         // 실제 끝 번호
         int realEnd = (int)(Math.ceil(totalCount * 1.0) / cri.getAmount());
 

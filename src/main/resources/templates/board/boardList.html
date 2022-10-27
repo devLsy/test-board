@@ -24,21 +24,26 @@
             </tr>
             </tbody>
         </table>
-
-        <div class='pull-right'>
-<!--            <ul class="pagination">-->
-<!--                    <li class="paginate_button previous"><a href="#">Previous</a>-->
-<!--                    </li>-->
-<!--                    <li class="paginate_button next"><a href="#">${num }</a></li>-->
-<!--                    <li class="paginate_button next"><a href="#">Next</a></li>-->
-<!--            </ul>-->
-                <li th:text="${pageMaker.startPage}"></li>
-                <li th:text="${pageMaker.prev}"></li>
-                <li th:text="${pageMaker.next}"></li>
-                <li th:text="${pageMaker.endPage}"></li>
-        </div>
     </div>
 
+    <!-- 게시판 하단의 페이징 버튼 -->
+    <div class="box-footer clearfix">
+        <ul class="pagination pagination-sm no-margin pull-right">
+
+            <li th:if="${pageMaker.prev} == true">
+                <span> << </span>
+            </li>
+
+            <li th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}"  th:classappend="${pageMaker.cri.pageNum} == ${idx} ? active : null">
+                <a th:href="${pageMaker.cri.amount}" th:text="${idx}"></a>
+            </li>
+
+            <li th:if="${pageMaker.next} == true and ${pageMaker.endPage > 0}">
+                <span> >> </span>
+            </li>
+        </ul>
+    </div>
+    <!-- //게시판 하단의 페이징 버튼 end -->
 
     <div th:replace="fragments/footer :: footer" />
 

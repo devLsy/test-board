@@ -27,7 +27,7 @@ class BoardServiceTest {
         //givin
 //        BoardVO boardVO = BoardVO.createBoard("마블", "닥스", "닥터스트레인지");
 //        boardService.insertBoard(boardVO);
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 500; i++) {
             BoardVO boardVO = BoardVO.createBoard(i + "title", i + "content", i + "name");
             boardService.insertBoard(boardVO);
         }
